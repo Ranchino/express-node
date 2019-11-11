@@ -1,0 +1,25 @@
+{
+  "name": "ranchino",
+  "version": "1.0.0",
+  "description": "testing node and express",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ranchino/express-node.git"
+  },
+  "keywords": [
+    "REaliT1990"
+  ],
+  "author": "Ranchino",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Ranchino/express-node/issues"
+  },
+  "homepage": "https://github.com/Ranchino/express-node#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
