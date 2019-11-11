@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Node Express - Todo</title>
+    <link rel="stylesheet" href="static/css/style.css">
+    <script src="static/script/script.js"></script>
+</head>
+<body>
+    <div class="container">
+        
+        <h1>Todo app med Express och Node.js 🤩</h1>
+
+        
+        <form action="/todoApi" method="post">
+            <input type="text" name="newTask" placeholder="Lägg till en ny uppgift">
+            <button id="buttonRefresh" onclick="refreshThisPage()">Lägg till uppgift!</button>
+
+            <h2>Lägg till en ny uppgift</h2>
+
+            <button formaction="/todoApi" type="submit">Ta bort Uppgift</button>
+        </form>
+        
+
+        <h2> Avklarade uppgifter </h2>
+
+
+    </div>
+    
+</body>
+</html>
