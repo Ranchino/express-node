@@ -1,7 +1,10 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 const path = require("path")
+
+app.use(bodyParser.json());
 
 app.get('/', (req, res) => res.sendFile(path.join(__dirname+'/index.html')))
 
@@ -10,26 +13,42 @@ app.listen(port, () => console.log('Exempel app listening on port ${port}!'));
 
 app.use(express.static('public'))
 
+var newTaskTodo = [
+    {
+        uppgift: 'Tvätta bilen',
+        id: 0
+    }
+]
 
+var completeTask = [
+    {
+        uppgift: 'Köpa mat',
+        id: 1
+    }
+]
 
-
-app.get('/todoApi', function (req, res) {
-    res.json({
-        message: 'thank you for checking out our api',
-        count: nrOfVisitors
-    })
+app.post('/addTask', function (req, res) {
+    var randLetter = String.fromCharCode(65 + Math.floor(Math.random() * 26));
+    var uniqid = randLetter + Date.now();
+   console.log(req.body.postTaskValue);
+   newTaskTodo.push(
+        {
+            uppgift: req.body.postTaskValue,
+            id: uniqid 
+        }
+   )
+   console.log(newTaskTodo);
+   res.send({newTaskTodo});
 })
 
-
-app.post('/todoApi', function (req, res) {
-    res.send('performing a POST request')
+app.get('/getTask', function (req, res) {
+    res.send({newTaskTodo});
 })
 
-app.put('/todoApi', function (req, res) {
+app.put('/updateTask', function (req, res) {
     res.send('performing a PUT request at /user')
 })
 
-app.delete('/todoApi', function (req, res) {
+app.delete('/deleteTask', function (req, res) {
     res.send('performing a DELETE request at /user')
 })
-
