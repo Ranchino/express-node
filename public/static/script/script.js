@@ -12,7 +12,7 @@ function getTask(){
      var myTaskList = document.getElementById("taskList");
      myTaskList.innerHTML = ""
      for (var i = 0; i < responseData.length; i++) {
-         myTaskList.innerHTML += "<li>" + responseData[i].uppgift + "</li>" + "<br><br>"
+         myTaskList.innerHTML += "<li>" + "<input type='checkbox' name='check' value='" + responseData[i].uppgift + "'>" + responseData[i].uppgift + "</li>" + "<br><br>"
      }
  }
 
