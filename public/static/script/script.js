@@ -33,3 +33,32 @@ function sendForm(event){
     })()
 
 }
+
+function deleteTask(){
+    const url = 'http://localhost:3000/deleteTask';
+    var postTask = document.getElementById("newTask").value;
+    (async () => {
+        const response = await fetch(url, {
+            method: 'DELETE',
+            headers: {
+                'Content-type': 'application/json'
+            },
+           body: JSON.stringify({postTaskValue: postTask})
+        });
+        deleteTaskTodo();
+    })()
+
+}
+
+function deleteTaskTodo(){
+    var ele = document.getElementsByName('check');      
+    for(var i = 0; i < ele.length; i++) { 
+        if(ele[i].checked){
+            document.getElementById("result").innerHTML = "Borttagen: "+ele[i].value; 
+        } 
+    }
+    getTask();
+
+}
+
+

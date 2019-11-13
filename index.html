@@ -17,7 +17,7 @@
         
         <form onsubmit="sendForm(event)">
             <input id="newTask" type="text" name="newTask" placeholder="Lägg till en ny uppgift">
-            <button id="buttonRefresh" type="submit">Lägg till uppgift!</button>
+            <button id="buttonAddTask" type="submit">Lägg till uppgift!</button>
         </form>
         <br>
         <h2>Uppgifter att göra</h2>
@@ -26,11 +26,12 @@
                 
             </ul>
         </div>
-       
+        <button onclick="deleteTask()" type="submit">Ta bort uppgift</button>
+
+        <div id="result"></div> 
 
         <h2> Avklarade uppgifter </h2>
         
-
 
     </div>
     

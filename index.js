@@ -50,5 +50,11 @@ app.put('/updateTask', function (req, res) {
 })
 
 app.delete('/deleteTask', function (req, res) {
-    res.send('performing a DELETE request at /user')
+    console.log("du raderar nu detta obejekt");
+    for(var i = 0; i < newTaskTodo.length; i++){
+        newTaskTodo.splice(i,1);
+    }
+    res.send({newTaskTodo});
+    console.log(newTaskTodo);
 })
+
