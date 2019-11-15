@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const app = express();
 const port = 3000;
 const path = require("path")
+/* var fs = require("fs");*/
 
 app.use(bodyParser.json());
 
@@ -12,6 +13,9 @@ app.listen(port, () => console.log('Exempel app listening on port ${port}!'));
 
 
 app.use(express.static('public'))
+
+/* fs.writeFile("./test.json", JSON.stringify({test: "test"}));
+fs.readFile("./test.json", (err, file) => {console.log(JSON.parse(file))}); */
 
 var newTaskTodo = [
     {
@@ -46,15 +50,26 @@ app.get('/getTask', function (req, res) {
 })
 
 app.put('/updateTask', function (req, res) {
-    res.send('performing a PUT request at /user')
+    for(var i = newTaskTodo.length -1; i>= 0; i--){
+        if(req.body.postTaskValue == newTaskTodo[i].uppgift){
+            console.log("du uppdaterar nu detta obejekt: " + req.body.postTaskValue);
+            
+            /* newTaskTodo.splice(i,1); */
+        }
+    }
+    res.send({newTaskTodo});
 })
 
 app.delete('/deleteTask', function (req, res) {
     console.log("du raderar nu detta obejekt");
-    for(var i = 0; i < newTaskTodo.length; i++){
-        newTaskTodo.splice(i,1);
+    for(var i = newTaskTodo.length -1; i>= 0; i--){
+        if(req.body.postTaskValue == newTaskTodo[i].uppgift){
+            newTaskTodo.splice(i,1);
+        }
     }
     res.send({newTaskTodo});
     console.log(newTaskTodo);
 })
+
+
 

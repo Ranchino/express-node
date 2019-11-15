@@ -35,30 +35,58 @@ function sendForm(event){
 }
 
 function deleteTask(){
+    var ele = document.getElementsByName('check');      
+    for(var i = 0; i < ele.length; i++) { 
+        if(ele[i].checked){
+            var uppgift = ele[i].value;
+            document.getElementById("result").innerHTML = "Borttagen: "+ele[i].value;
+             
+        } 
+    }
+    deleteTaskApi(uppgift);
+
+}
+
+function deleteTaskApi(uppgift){
     const url = 'http://localhost:3000/deleteTask';
-    var postTask = document.getElementById("newTask").value;
     (async () => {
         const response = await fetch(url, {
             method: 'DELETE',
             headers: {
                 'Content-type': 'application/json'
             },
-           body: JSON.stringify({postTaskValue: postTask})
+           body: JSON.stringify({postTaskValue: uppgift})
         });
-        deleteTaskTodo();
+        getTask();
     })()
 
 }
 
-function deleteTaskTodo(){
+function updateTask(){
     var ele = document.getElementsByName('check');      
     for(var i = 0; i < ele.length; i++) { 
         if(ele[i].checked){
-            document.getElementById("result").innerHTML = "Borttagen: "+ele[i].value; 
+            var uppgift = ele[i].value;
+            document.getElementById("result").innerHTML = "<br><input type='text' id='updateTaskValue' name='check' value='" + uppgift + "'><button>Uppdatera</button>";  
         } 
     }
-    getTask();
+    updateTaskApi(uppgift);
+}
+
+function updateTaskApi(uppgift){
+    const url = 'http://localhost:3000/updateTask';
+    (async () => {
+        const response = await fetch(url, {
+            method: 'PUT',
+            headers: {
+                'Content-type': 'application/json'
+            },
+           body: JSON.stringify({postTaskValue: uppgift})
+        });
+        getTask();
+    })()
 
 }
+
 
 
