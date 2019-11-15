@@ -5,15 +5,26 @@ function getTask(){
         const response = await fetch(url, {});
         const responseData = await response.json();
         console.log(responseData);
-        renderTask(responseData.newTaskTodo);
+        renderTask(responseData);
     })()
 }
+
  function renderTask(responseData){
      var myTaskList = document.getElementById("taskList");
-     myTaskList.innerHTML = ""
-     for (var i = 0; i < responseData.length; i++) {
-         myTaskList.innerHTML += "<li>" + "<input type='radio' onchange='updateTask()' id='" + responseData[i].id + "' name='check' value='" + responseData[i].uppgift + "'>" + responseData[i].uppgift + "</li>" + "<br><br>"
+     var finishContainer = document.getElementById("finished")
+     myTaskList.innerHTML = "";
+
+     finishContainer.innerHTML= "";
+     for (var i = 0; i < responseData.newTaskTodo.length; i++) {
+         myTaskList.innerHTML += "<li>" + "<input type='radio' onchange='updateTask()' id='" + responseData.newTaskTodo[i].id + "' name='check' value='" + responseData.newTaskTodo[i].uppgift + "'>" + responseData.newTaskTodo[i].uppgift + "</li>" + "<br><br>"
      }
+     for (var i = 0; i < responseData.completeTask.length; i++) {
+        finishContainer.innerHTML += "<li>" + responseData.completeTask[i].uppgift + "</li>" + "<br><br>"
+     }
+
+   
+
+
  }
 
 function sendForm(event){
@@ -80,7 +91,7 @@ function updateThisTask(){
 }
 
 
-function updateTaskApi(uppgift){
+function updateTaskApi(){
     const url = 'http://localhost:3000/updateTask';
     var updateTask = document.getElementById("updateTaskValue").value;
     var getTaskId = document.getElementsByName("check");
@@ -104,5 +115,31 @@ function updateTaskApi(uppgift){
 
 }
 
+function finishedTask(){
+   var ele = document.getElementsByName('check');
+   var containerFinished = document.getElementById("finished");
+   containerFinished.innerHTML = "";
+   for(var i = 0; i < ele.length; i++){
+       if(ele[i].checked){
+           var taskName = ele[i].value;
+           var taskId = ele[i].id;
+       }
+   }
+   const urlUpdate = 'http://localhost:3000/addTaskFinished';
+   (async () => {
+        const response = await fetch(urlUpdate, {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json'
+            },
+            body: JSON.stringify({postTaskValue: taskName, id: taskId})
+            });
+            const json = await response.json();
+            getTask();
+            deleteTask();
+
+    })()
+
+}
 
 

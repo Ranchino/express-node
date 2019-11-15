@@ -44,9 +44,18 @@ app.post('/addTask', function (req, res) {
    console.log(newTaskTodo);
    res.send({newTaskTodo});
 })
+app.post('/addTaskFinished', function (req, res) {
+    completeTask.push(
+        {
+            uppgift: req.body.postTaskValue,
+            id: req.body.id
+        }
+    )
+    res.send({completeTask});
+})
 
 app.get('/getTask', function (req, res) {
-    res.send({newTaskTodo});
+    res.send({newTaskTodo, completeTask});
 })
 
 app.put('/updateTask', function (req, res) {
