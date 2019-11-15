@@ -19,7 +19,7 @@ function getTask(){
          myTaskList.innerHTML += "<li>" + "<input type='radio' onchange='updateTask()' id='" + responseData.newTaskTodo[i].id + "' name='check' value='" + responseData.newTaskTodo[i].uppgift + "'>" + responseData.newTaskTodo[i].uppgift + "</li>" + "<br><br>"
      }
      for (var i = 0; i < responseData.completeTask.length; i++) {
-        finishContainer.innerHTML += "<li>" + responseData.completeTask[i].uppgift + "</li>" + "<br><br>"
+        finishContainer.innerHTML += "<input type='checkbox' checked>" + responseData.completeTask[i].uppgift + "</input>" + "<br><br>"
      }
 
    
