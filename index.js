@@ -51,10 +51,10 @@ app.get('/getTask', function (req, res) {
 
 app.put('/updateTask', function (req, res) {
     for(var i = newTaskTodo.length -1; i>= 0; i--){
-        if(req.body.postTaskValue == newTaskTodo[i].uppgift){
-            console.log("du uppdaterar nu detta obejekt: " + req.body.postTaskValue);
+        if(req.body.id == newTaskTodo[i].id){
+            newTaskTodo[i].uppgift = req.body.postTaskValue;
             
-            /* newTaskTodo.splice(i,1); */
+            console.log("du har nu uppdaterat detta obejekt till: " + newTaskTodo[i].uppgift);
         }
     }
     res.send({newTaskTodo});
